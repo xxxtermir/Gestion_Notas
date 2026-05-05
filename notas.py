@@ -43,6 +43,9 @@ def eliminar_nota(estudiante_id: str, asignatura: str) -> None:
     if asignatura not in asignaturas:
         raise KeyError(f"La asignatura '{asignatura}' no existe para este estudiante.")
     del asignaturas[asignatura]
+
+
+def obtener_notas(estudiante_id: str) -> dict:
     """Retorna las notas de todas las asignaturas de un estudiante.
 
     Args:

@@ -50,6 +50,20 @@ def listar_estudiantes() -> dict:
     return _estudiantes
 
 
+def eliminar_estudiante(estudiante_id: str) -> None:
+    """Elimina un estudiante del sistema por su ID.
+
+    Args:
+        estudiante_id: Identificador único del estudiante.
+
+    Raises:
+        KeyError: Si el estudiante no existe.
+    """
+    if estudiante_id not in _estudiantes:
+        raise KeyError(f"Estudiante con ID '{estudiante_id}' no encontrado.")
+    del _estudiantes[estudiante_id]
+
+
 def establecer_estudiantes(datos: dict) -> None:
     """Reemplaza el estado interno con datos cargados desde archivo.
 

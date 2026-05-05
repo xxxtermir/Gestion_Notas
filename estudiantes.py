@@ -21,6 +21,8 @@ def registrar_estudiante(estudiante_id: str, nombre: str) -> dict:
 
     if not estudiante_id or not nombre:
         raise ValueError("El ID y el nombre no pueden estar vacíos.")
+    if " " in estudiante_id:
+        raise ValueError("El ID del estudiante no puede contener espacios.")
     if estudiante_id in _estudiantes:
         raise ValueError(f"El estudiante con ID '{estudiante_id}' ya existe.")
 
@@ -48,6 +50,20 @@ def obtener_estudiante(estudiante_id: str) -> dict:
 def listar_estudiantes() -> dict:
     """Retorna todos los estudiantes registrados."""
     return _estudiantes
+
+
+def eliminar_estudiante(estudiante_id: str) -> None:
+    """Elimina un estudiante del sistema por su ID.
+
+    Args:
+        estudiante_id: Identificador único del estudiante.
+
+    Raises:
+        KeyError: Si el estudiante no existe.
+    """
+    if estudiante_id not in _estudiantes:
+        raise KeyError(f"Estudiante con ID '{estudiante_id}' no encontrado.")
+    del _estudiantes[estudiante_id]
 
 
 def establecer_estudiantes(datos: dict) -> None:

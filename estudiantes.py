@@ -21,6 +21,8 @@ def registrar_estudiante(estudiante_id: str, nombre: str) -> dict:
 
     if not estudiante_id or not nombre:
         raise ValueError("El ID y el nombre no pueden estar vacíos.")
+    if " " in estudiante_id:
+        raise ValueError("El ID del estudiante no puede contener espacios.")
     if estudiante_id in _estudiantes:
         raise ValueError(f"El estudiante con ID '{estudiante_id}' ya existe.")
 

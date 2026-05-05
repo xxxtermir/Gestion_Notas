@@ -7,8 +7,8 @@ Aplicación de consola en Python para gestionar calificaciones estudiantiles.
 | Rol | Nombre | ID |
 |---|---|---|
 | Tech Lead | Andres Solano | — |
-| Dev Backend | _por definir_ | — |
-| Dev Integración | _por definir_ | — |
+| Dev Backend | Juan Baena | — |
+| Dev Integración | Henrys Suarez | — |
 
 ## Funcionalidades
 

@@ -61,5 +61,10 @@ def generar_reporte() -> None:
                     )
         print("-" * _SEP_ANCHO)
 
+    aprobados = sum(
+        1 for eid in estudiantes if "Aprobado" in obtener_estado(eid)
+    )
+    reprobados = len(estudiantes) - aprobados
     print(f"\n  Total de estudiantes: {len(estudiantes)}")
+    print(f"  Aprobados: {aprobados}  |  Reprobados: {reprobados}")
     print(f"{separador}\n")

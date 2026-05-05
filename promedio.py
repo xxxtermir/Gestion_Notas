@@ -23,7 +23,23 @@ def calcular_promedio(estudiante_id: str) -> float:
     return round(sum(asignaturas.values()) / len(asignaturas), 2)
 
 
-def obtener_estado(estudiante_id: str) -> str:
+def obtener_mejor_asignatura(estudiante_id: str) -> tuple[str, float] | None:
+    """Retorna la asignatura con la nota más alta del estudiante.
+
+    Args:
+        estudiante_id: Identificador único del estudiante.
+
+    Returns:
+        Tupla (asignatura, nota) con la nota más alta, o None si no hay asignaturas.
+
+    Raises:
+        KeyError: Si el estudiante no existe.
+    """
+    asignaturas = obtener_estudiante(estudiante_id)["asignaturas"]
+    if not asignaturas:
+        return None
+    mejor = max(asignaturas, key=lambda k: asignaturas[k])
+    return mejor, asignaturas[mejor]
     """Determina si un estudiante está aprobado o reprobado.
 
     Args:

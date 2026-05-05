@@ -31,6 +31,7 @@ htmlcov/
 
 # Data files generated at runtime
 datos_estudiantes.json
+reporte_notas.csv
 
 # OS
 .DS_Store

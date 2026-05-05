@@ -61,5 +61,29 @@ def generar_reporte() -> None:
                     )
         print("-" * _SEP_ANCHO)
 
+def generar_resumen_asignaturas() -> None:
+    """Imprime el promedio grupal por asignatura de todos los estudiantes."""
+    estudiantes = listar_estudiantes()
+    if not estudiantes:
+        print("\nNo hay datos para mostrar.\n")
+        return
+
+    totales: dict[str, list[float]] = {}
+    for datos in estudiantes.values():
+        for asig, nota in datos["asignaturas"].items():
+            totales.setdefault(asig, []).append(nota)
+
+    separador = "=" * 40
+    print(f"\n{separador}")
+    print("  PROMEDIO GRUPAL POR ASIGNATURA")
+    print(separador)
+    for asig, notas in sorted(totales.items()):
+        prom = round(sum(notas) / len(notas), 2)
+        print(f"  {asig:<25} {prom:.2f}")
+    print(f"{separador}\n")
+        1 for eid in estudiantes if "Aprobado" in obtener_estado(eid)
+    )
+    reprobados = len(estudiantes) - aprobados
     print(f"\n  Total de estudiantes: {len(estudiantes)}")
+    print(f"  Aprobados: {aprobados}  |  Reprobados: {reprobados}")
     print(f"{separador}\n")

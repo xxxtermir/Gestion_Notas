@@ -1,7 +1,8 @@
-"""Módulo para guardar y cargar datos de estudiantes en formato JSON."""
+"""Módulo para guardar y cargar datos de estudiantes en formato JSON y CSV."""
 
 import json
 import os
+import csv
 from estudiantes import listar_estudiantes, establecer_estudiantes
 
 ARCHIVO_DATOS = "datos_estudiantes.json"
@@ -43,3 +44,23 @@ def cargar_datos(ruta: str = ARCHIVO_DATOS) -> bool:
     establecer_estudiantes(datos)
     print(f"Datos cargados desde '{ruta}'.")
     return True
+
+
+def exportar_csv(ruta: str = "reporte_notas.csv") -> None:
+    """Exporta las notas de todos los estudiantes a un archivo CSV.
+
+    Args:
+        ruta: Ruta del archivo CSV de destino.
+    """
+    datos = listar_estudiantes()
+    with open(ruta, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["ID", "Nombre", "Asignatura", "Nota"])
+        for est_id, info in datos.items():
+            asignaturas = info["asignaturas"]
+            if not asignaturas:
+                writer.writerow([est_id, info["nombre"], "", ""])
+            else:
+                for asig, nota in asignaturas.items():
+                    writer.writerow([est_id, info["nombre"], asig, nota])
+    print(f"Reporte CSV exportado en '{ruta}'.")

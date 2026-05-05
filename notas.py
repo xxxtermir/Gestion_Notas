@@ -28,7 +28,20 @@ def agregar_nota(estudiante_id: str, asignatura: str, nota: float) -> None:
     estudiante["asignaturas"][asignatura] = round(nota, 2)
 
 
-def obtener_notas(estudiante_id: str) -> dict:
+def eliminar_nota(estudiante_id: str, asignatura: str) -> None:
+    """Elimina la nota de una asignatura para un estudiante.
+
+    Args:
+        estudiante_id: Identificador único del estudiante.
+        asignatura: Nombre de la asignatura a eliminar.
+
+    Raises:
+        KeyError: Si el estudiante o la asignatura no existen.
+    """
+    asignaturas = obtener_notas(estudiante_id)
+    if asignatura not in asignaturas:
+        raise KeyError(f"La asignatura '{asignatura}' no existe para este estudiante.")
+    del asignaturas[asignatura]
     """Retorna las notas de todas las asignaturas de un estudiante.
 
     Args:

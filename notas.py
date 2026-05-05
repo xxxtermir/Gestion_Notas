@@ -23,12 +23,26 @@ def agregar_nota(estudiante_id: str, asignatura: str, nota: float) -> None:
         raise ValueError("El nombre de la asignatura no puede estar vacío.")
     if not (NOTA_MIN <= nota <= NOTA_MAX):
         raise ValueError(f"La nota debe estar entre {NOTA_MIN} y {NOTA_MAX}.")
+    nota = round(nota, 2)
 
     estudiante = obtener_estudiante(estudiante_id)
-    estudiante["asignaturas"][asignatura] = round(nota, 2)
+    estudiante["asignaturas"][asignatura] = nota
 
 
-def obtener_notas(estudiante_id: str) -> dict:
+def eliminar_nota(estudiante_id: str, asignatura: str) -> None:
+    """Elimina la nota de una asignatura para un estudiante.
+
+    Args:
+        estudiante_id: Identificador único del estudiante.
+        asignatura: Nombre de la asignatura a eliminar.
+
+    Raises:
+        KeyError: Si el estudiante o la asignatura no existen.
+    """
+    asignaturas = obtener_notas(estudiante_id)
+    if asignatura not in asignaturas:
+        raise KeyError(f"La asignatura '{asignatura}' no existe para este estudiante.")
+    del asignaturas[asignatura]
     """Retorna las notas de todas las asignaturas de un estudiante.
 
     Args:

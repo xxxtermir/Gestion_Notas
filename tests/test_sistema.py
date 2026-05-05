@@ -105,15 +105,15 @@ class TestPromedio:
 
     def test_estado_aprobado(self):
         mod_notas.agregar_nota("001", "Mat", 3.5)
-        assert mod_promedio.obtener_estado("001") == "Aprobado"
+        assert mod_promedio.obtener_estado("001") == "Aprobado ✓"
 
     def test_estado_reprobado(self):
         mod_notas.agregar_nota("001", "Mat", 2.9)
-        assert mod_promedio.obtener_estado("001") == "Reprobado"
+        assert mod_promedio.obtener_estado("001") == "Reprobado ✗"
 
     def test_estado_limite_aprobacion(self):
         mod_notas.agregar_nota("001", "Mat", 3.0)
-        assert mod_promedio.obtener_estado("001") == "Aprobado"
+        assert mod_promedio.obtener_estado("001") == "Aprobado ✓"
 
 
 # ---------------------------------------------------------------------------

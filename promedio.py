@@ -40,6 +40,9 @@ def obtener_mejor_asignatura(estudiante_id: str) -> tuple[str, float] | None:
         return None
     mejor = max(asignaturas, key=lambda k: asignaturas[k])
     return mejor, asignaturas[mejor]
+
+
+def obtener_estado(estudiante_id: str) -> str:
     """Determina si un estudiante está aprobado o reprobado.
 
     Args:
@@ -52,4 +55,4 @@ def obtener_mejor_asignatura(estudiante_id: str) -> tuple[str, float] | None:
         KeyError: Si el estudiante no existe.
     """
     promedio = calcular_promedio(estudiante_id)
-    return "Aprobado" if promedio >= NOTA_APROBACION else "Reprobado"
+    return "Aprobado ✓" if promedio >= NOTA_APROBACION else "Reprobado ✗"
